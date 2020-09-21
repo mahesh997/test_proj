@@ -42,8 +42,12 @@
 			<plugin>
 				<groupId>org.springframework.boot</groupId>
 				<artifactId>spring-boot-maven-plugin</artifactId>
+				<configuration>
+                <finalName>TestJar</finalName>                   
+                </configuration>
 			</plugin>
 		</plugins>
 	</build>
+	
 
 </project>

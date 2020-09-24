@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: springboot-deploy
+  labels:
+    name: springboot-deploy
+    app: springboot-app
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      name: sts-app-pod
+      app: springboot-app
+    
+  template:
+    metadata:
+      name: sts-app-pod
+      labels:
+        name: sts-app-pod
+        app: springboot-app
+    spec:
+      containers:
+        - name: test-spring
+          image: 962093/dcker_spring_test:21
+          ports:
+            - containerPort: 8585
+
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: springboot-service
+spec:
+  type: NodePort
+  ports:
+  - port: 8585
+    targetPort: 8585
+    nodePort: 30007
+  selector:
+    app: springboot-app
+    

@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: test-spring
-          image:"$registry:$BUILD_NUMBER"
+          image: "$registry:$BUILD_NUMBER"
           ports:
             - containerPort: 8585
 

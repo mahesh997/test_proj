@@ -12,14 +12,14 @@ pipeline {
          checkout([$class: 'GitSCM', branches: [[name: '*/master']], doGenerateSubmoduleConfigurations: false, extensions: [], submoduleCfg: [], userRemoteConfigs: [[credentialsId: 'GitHub_SCM', url: 'https://github.com/mahesh997/test_proj.git']]])
             }
     }
-    stage('Building image') {
+    stage('docker build image') {
       steps{
         script {
           dockerImage = docker.build registry + ":$BUILD_NUMBER"
         }
       }
     }
-    stage('Deploy Image') {
+    stage('docker Image Push') {
       steps{
         script {
           docker.withRegistry( '', registryCredential ) {

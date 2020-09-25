@@ -33,5 +33,10 @@ pipeline {
         sh "docker rmi $registry:$BUILD_NUMBER"
       }
     }
+    stage('deploy to k8s') {
+      steps {
+         kubernetesDeploy configs: 'Deployment.yml', kubeConfig: [path: ''], kubeconfigId: 'Kubeconfig_info', secretName: '', ssh: [sshCredentialsId: '*', sshServer: ''], textCredentials: [certificateAuthorityData: '', clientCertificateData: '', clientKeyData: '', serverUrl: 'https://']
+            }
+    }
   }
 }

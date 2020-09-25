@@ -21,7 +21,7 @@ spec:
     spec:
       containers:
         - name: test-spring
-          image: 962093/dcker_spring_test:21
+          image:"$registry:$BUILD_NUMBER"
           ports:
             - containerPort: 8585
 

@@ -1,0 +1,24 @@
+---
+- name: builidng a docker image ad push to dockerhub
+  hosts: localhost 
+  tasks:
+  - name: Build_Docker_image
+    docker_image:
+      build:
+        path: ./ 
+      name: 962093/dcker_spring_test:v2
+      repository: "962093/dcker_spring_test:v2"
+      source: build
+  - name: Push to docker hub
+    docker_image:
+      name: "962093/dcker_spring_test:v2"
+      push: yes
+  - name: Removing unused images
+    docker_image:
+      name: 962093/dcker_spring_test:v2   
+      state: absent
+  
+       
+      
+             
+      

@@ -1,0 +1,18 @@
+---
+- name: deploying app into k8s
+  hosts: k8s_master
+  tasks:
+  - name: deploy into k8s
+    k8s:
+       state: present
+       validate_certs: no
+       namespace: default
+       definition: "{{ lookup('template', 'Deployment.yml') | from_yaml }}"
+ 
+  - name: service deploy into k8s
+    k8s:
+       state: present
+       validate_certs: no
+       namespace: default
+       definition: "{{ lookup('template', 'Service-config.yml') | from_yaml }}"
+       

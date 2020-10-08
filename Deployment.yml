@@ -21,21 +21,6 @@ spec:
     spec:
       containers:
         - name: test-spring
-          image: "$registry:$BUILD_NUMBER"
+          image: 962093/dcker_spring_test:v2
           ports:
             - containerPort: 8585
-
----
-apiVersion: v1
-kind: Service
-metadata:
-  name: springboot-service
-spec:
-  type: NodePort
-  ports:
-  - port: 8585
-    targetPort: 8585
-    nodePort: 30007
-  selector:
-    app: springboot-app
-    

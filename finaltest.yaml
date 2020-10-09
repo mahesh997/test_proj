@@ -1,0 +1,11 @@
+---
+- name: builidng a docker image ad push to dockerhub
+  hosts: localhost
+  tasks:
+  - name: Build_Docker_image
+    docker_image:
+      build: path="/home/ansible/test_proj"
+      pull: yes
+      source: build
+      name: "testimage"
+
